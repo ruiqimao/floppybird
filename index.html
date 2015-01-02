@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+  <meta charset="utf-8" />
+  <title>Floppy Bird</title>
+
+  <style>
+    body,html {
+      width:100%;
+      margin:0;
+      padding:0;
+      font-family:Verdana;
+      font-size:12px;
+    }
+    a {
+      color:#CC4444;
+    }
+    a:hover {
+      color:#DD6666;
+    }
+    #error_div {
+      margin-top: 25px;
+      width:100%;
+      text-align:center;
+      color:#CC4444;
+    }
+    #game_div {
+      width: 288px;
+      margin: auto;
+      margin-top: 25px;
+      border:1px solid #000000;
+    }
+    #instructions_div {
+      margin-top:25px;
+      width:100%;
+      text-align:center;
+    }
+    #sensitivity_list {
+      padding:0;
+      margin:0;
+      list-style-type:none;
+    }
+    #sensitivity_list li {
+      display:inline-block;
+    }
+    #sensitivity_list li div {
+      padding:1em;
+      width:6em;
+      border:1px solid #AAAAAA;
+    }
+    .active {
+      background:#EEEEEE;
+    }
+  </style>
+
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="phaser.min.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</head>
+
+<body>
+  <div id="error_div">Your browser does not support the Web Audio API. "Floppy Bird" can continue to be played with a mouse/touch/keyboard.</div>
+  <div id="game_div"></div>
+  <div id="instructions_div">
+    Make some noise (snap, grunt, etc.) to make the floppy bird fly!
+    <br />
+    <br />
+    For the best experience, play "Floppy Bird" on <a target="_blank" href="http://chrome.google.com/">Google Chrome</a>.
+    <br />
+    <br />
+    <b>Sensitivity</b>
+    <br />
+    <br />
+    <ul id="sensitivity_list">
+      <li><div id="low" onclick="javascript:sensitivity(25);">Low</div></li>
+      <li><div id="medium" class="active" onclick="javascript:sensitivity(10);">Medium</div></li>
+      <li><div id="high" onclick="javascript:sensitivity(3)">High</div></li>
+    </ul>
+    <br />
+    Created by <a target="_blank" href="http://www.ruiqimao.com/"> Ruiqi Mao</a> using <a target="_blank" href="http://www.phaser.io/">Phaser</a> and the Web Audio API. All graphics and audio are property of <a target="_blank" href="http://www.dotgears.com/">.GEARS Studios</a>.
+    <br />
+    <br />
+  </div>
+  <script type="text/javascript">
+    $("#error_div").hide();
+    $("#low").click(function() {
+      $(".active").removeClass("active");
+      $("#low").addClass("active");
+    });
+    $("#medium").click(function() {
+      $(".active").removeClass("active");
+      $("#medium").addClass("active");
+    });
+    $("#high").click(function() {
+      $(".active").removeClass("active");
+      $("#high").addClass("active");
+    });
+    $(document).ready(function() {
+      if(!soundAvailable) $("#error_div").fadeIn(1000);
+    });
+  </script>
+</body>
+
+</html>
